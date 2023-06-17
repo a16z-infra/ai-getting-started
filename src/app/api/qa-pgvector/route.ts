@@ -33,11 +33,10 @@ export async function POST(request: Request) {
   });
 
   const [{ embedding }] = embeddingResponse.data.data;
+  console.log(embedding);
   // In production we should handle possible errors
   const { data: documents } = await supabaseClient.rpc("match_documents", {
     query_embedding: embedding,
-    match_threshold: 0.78, // Choose an appropriate threshold for your data
-    match_count: 10, // Choose the number of matches
   });
 
   const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
@@ -45,6 +44,7 @@ export async function POST(request: Request) {
   let contextText = "";
 
   // Concat matched documents
+  console.log(documents);
   for (let i = 0; i < documents.length; i++) {
     const document = documents[i];
     const content = document.content;
