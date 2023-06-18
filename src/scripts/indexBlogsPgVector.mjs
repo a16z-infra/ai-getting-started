@@ -27,7 +27,7 @@ const docs = fileNames.map((fileName) => {
 });
 console.log(docs.length);
 
-const chunkSize = 1000; // Adjust the chunk size as per your needs
+const chunkSize = 4096; // Adjust the chunk size as per your needs
 
 for (const doc of docs) {
   const chunks = doc.match(new RegExp(`.{1,${chunkSize}}`, "g"));

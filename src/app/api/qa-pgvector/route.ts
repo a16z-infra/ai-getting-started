@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 
   const [{ embedding }] = embeddingResponse.data.data;
   console.log(embedding);
-  // In production we should handle possible errors
+
   const { data: documents } = await supabaseClient.rpc("match_documents", {
     query_embedding: embedding,
   });
