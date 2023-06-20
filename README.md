@@ -1,5 +1,8 @@
 # AI Getting Started
 
+The goal of this project is to provide the quickest and simplest framework for building a generative AI app.
+
+
 <img width="1346" alt="Screen Shot 2023-06-16 at 10 37 51 PM" src="https://github.com/a16z/ai-getting-started/assets/3489963/f09753fc-daf1-4176-904e-b320d2c68fd1">
 
 
