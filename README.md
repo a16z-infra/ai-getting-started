@@ -81,8 +81,8 @@ e. **Supabase API key**
 
 f. **Metal API key**
 
-- Create a Metal index by visiting https://app.pinecone.io/ and click on "Create Index"
-- Give it an index name (this will be the environment variable `METAL_INDEX_ID`)
+- Create a Metal index by visiting https://app.getmetal.io/ and click on "Create Index"
+- Then grab the index id from the dashboard, this will be the environment variable `METAL_INDEX_ID`)
 - Once the index is successfully created, navigate to your [org settings](https://app.getmetal.io/settings/organization) and click "Create a Key".
 - Copy "API Key" value to `METAL_API_KEY` variable, and "Client ID" to `METAL_CLIENT_ID`
 
