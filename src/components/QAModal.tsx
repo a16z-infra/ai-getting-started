@@ -11,7 +11,7 @@ export default function QAModal({
 }) {
   const { completion, input, isLoading, handleInputChange, handleSubmit } =
     useCompletion({
-      api: "/api/qa-metal",
+      api: "/api/qa-pinecone",
     });
 
   return (
