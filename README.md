@@ -8,7 +8,7 @@
 
 - Auth: [Clerk](https://clerk.com/)
 - App logic: [Next.js](https://nextjs.org/)
-- VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector)
+- VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector) / [Metal](https://getmetal.io)
 - LLM Orchestration: [Langchain.js](https://js.langchain.com/docs/)
 - Image Model: [Replicate](https://replicate.com/)
 - Text Model: [OpenAI](https://platform.openai.com/docs/models)
