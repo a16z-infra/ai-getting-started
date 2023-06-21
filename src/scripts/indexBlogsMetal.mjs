@@ -1,3 +1,5 @@
+// Ref: https://python.langchain.com/docs/ecosystem/integrations/metal
+
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
