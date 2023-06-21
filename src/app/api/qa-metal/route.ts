@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   });
 
   const chain = RetrievalQAChain.fromLLM(model, retriever, {
-    k: 1,
+    // k: 1,
     returnSourceDocuments: true,
   });
 

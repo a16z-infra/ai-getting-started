@@ -11,7 +11,7 @@ export default function QAModal({
 }) {
   const { completion, input, isLoading, handleInputChange, handleSubmit } =
     useCompletion({
-      api: "/api/qa-pinecone",
+      api: "/api/qa-metal",
     });
 
   return (
@@ -82,7 +82,7 @@ export default function QAModal({
                             cy="12"
                             r="10"
                             stroke="currentColor"
-                            stroke-width="4"
+                            strokeWidth="4"
                           ></circle>
                           <path
                             className="opacity-75"
