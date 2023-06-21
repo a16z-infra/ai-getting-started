@@ -14,7 +14,7 @@ const examples = [
     name: "Q&A on documents",
     title: "Ask questions about an a16z blog",
     imageUrl:
-      "https://a16z.com/wp-content/uploads/2023/02/cropped-favicon-512.png",
+      "https://a16z.com/wp-content/uploads/2021/02/Default-Website-FeatureImage.jpg"
   },
 ];
 
@@ -46,7 +46,7 @@ export default function Examples() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
+                className="flex-shrink-0 object-cover w-32 h-32 mx-auto rounded-full"
                 src={example.imageUrl}
                 alt=""
               />
