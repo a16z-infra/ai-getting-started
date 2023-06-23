@@ -22,6 +22,7 @@
     "ai": "^2.1.3",
     "autoprefixer": "10.4.14",
     "dotenv": "^16.1.4",
+    "encoding": "^0.1.13",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "hnswlib-node": "^1.4.2",
