@@ -33,3 +33,4 @@ await PineconeStore.fromDocuments(
     pineconeIndex,
   }
 );
+console.log("end")
