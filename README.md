@@ -66,7 +66,8 @@ d. **Pinecone API key**
 
 - Create a Pinecone index by visiting https://app.pinecone.io/ and click on "Create Index"
 - Give it an index name (this will be the environment variable `PINECONE_INDEX`)
-- Fill in Dimension as `1536`
+- Fill in Dimensions as `1536`. This corresponds to the output dimensions of [OpenAI's text embedding model](https://platform.openai.com/docs/guides/embeddings/second-generation-models).
+- Leave Metric set to the default value `cosine`
 - Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy "Environment" value to `PINECONE_ENVIRONMENT` variable, and "Value" to `PINECONE_API_KEY`
 
 e. **Supabase API key**
