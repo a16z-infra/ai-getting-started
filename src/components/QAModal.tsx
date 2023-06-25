@@ -11,7 +11,7 @@ export default function QAModal({
 }) {
   const { completion, input, isLoading, handleInputChange, handleSubmit } =
     useCompletion({
-      api: "/api/qa-pinecone",
+      api: (process.env.PINECONE_API_KEY ? "/api/qa-pinecone" : "/api/qa-pg-vector"),
     });
 
   return (

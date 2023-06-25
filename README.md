@@ -79,17 +79,23 @@ e. **Supabase API key**
 There are a few markdown files under `/blogs` directory as examples so you can do Q&A on them. To generate embeddings and store them in the vector database for future queries, you can run the following command: 
 
 #### If using Pinecone
-Run the following command to generate embeddings and store them in Pinecone: 
+
+1. Set all requird Pinecone environment variables in `.env.local` file.
+1. Remove Supabase environment variables from `.env.local` file.
+1. Run the following command to generate embeddings and store them in Pinecone: 
+
 ```bash
 npm run generate-embeddings-pinecone
 ```
 #### If using Supabase pgvector
-In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-pg-vector`. Then run the following command to generate embeddings and store them in Supabase pgvector:
+
+1. Set all required Supabase environment variables in `.env.local` file.
+1. Remove Pinecone environment variables from `.env.local` file.
+1. Run the following command to generate embeddings and store them in Supabase pgvector:
 
 ```bash
 npm run generate-embeddings-supabase
 ```
-
 
 ### 5. Run app locally
 
