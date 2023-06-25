@@ -124,7 +124,7 @@ You can fork this repo, make changes, and create a PR. Add **@ykhli or @timqian*
 
 If you are new to contributing on github, here is a step-by-step guide: 
 
-1. Clcik on `Fork` on the top right of this page
+1. Click on `Fork` on the top right of this page
 2. Work on your change and push it to your forked repo. Now when you navigate to the forked repo's UI, you should see something like the following:
 <img width="904" alt="pr-preview" src="https://github.com/a16z-infra/ai-getting-started/assets/3489963/631e5f45-39ec-4b54-b9d1-b963e279dcc6">
 
