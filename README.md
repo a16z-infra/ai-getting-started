@@ -97,6 +97,10 @@ npm run generate-embeddings-supabase
 
 Now you are ready to test out the app locally! To do this, simply run `npm run dev` under the project root.
 
+The app is now running at [localhost:3000](http://localhost:3000). Once you sign in, you should see a landing page:
+
+<img alt="app running on localhost" src="https://github.com/a16z-infra/ai-getting-started/assets/2289/b89ac66b-64b8-434f-97cc-9243b9cf2c18">
+
 ### 6. Deploy the app
 
 #### Deploy to fly.io
