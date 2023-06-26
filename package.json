@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-embeddings-pinecone": "node src/scripts/indexBlogs.mjs",
-    "generate-embeddings-supabase": "node src/scripts/indexBlogPGVector.mjs"
+    "generate-embeddings-pinecone": "node src/scripts/indexTests.mjs",
+    "generate-embeddings-supabase": "node src/scripts/indexTestsPGVector.mjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.19.1",
@@ -22,6 +22,7 @@
     "ai": "^2.1.3",
     "autoprefixer": "10.4.14",
     "dotenv": "^16.1.4",
+    "encoding": "^0.1.13",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "hnswlib-node": "^1.4.2",
