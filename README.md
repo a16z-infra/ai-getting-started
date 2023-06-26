@@ -2,6 +2,8 @@
 
 [Live Demo (deployed on fly.io)](https://ai-getting-started.com/)
 
+[Join our community Discord: AI Stack Devs](https://discord.gg/PQUmTBTGmT)
+
 
 
 <img width="1305" alt="Screen Shot 2023-06-20 at 1 30 56 PM" src="https://github.com/a16z-infra/ai-getting-started/assets/3489963/bcc762d2-68f5-4c4e-8c49-14602bee4995">
