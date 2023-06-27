@@ -6,10 +6,11 @@ import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { wrapApiHandlerWithSentry } from "@sentry/nextjs";
 
 dotenv.config({ path: `.env.local` });
 
-export async function POST(req: Request) {
+async function HandlePost(req: Request) {
   const { prompt } = await req.json();
 
   const privateKey = process.env.SUPABASE_PRIVATE_KEY;
@@ -51,3 +52,5 @@ export async function POST(req: Request) {
   chain.call({ query: prompt }).catch(console.error);
   return new StreamingTextResponse(stream);
 }
+
+export const POST = wrapApiHandlerWithSentry(HandlePost, "qa-pg-vector");
