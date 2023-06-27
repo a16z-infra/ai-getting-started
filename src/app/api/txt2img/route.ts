@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
 import Replicate from "replicate";
 import { NextResponse } from "next/server";
+import { wrapApiHandlerWithSentry } from "@sentry/nextjs";
 
 dotenv.config({ path: `.env.local` });
 
-export async function POST(request: Request) {
+async function HandlePost(request: Request) {
   const { prompt } = await request.json();
   const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN || "",
@@ -21,3 +22,5 @@ export async function POST(request: Request) {
 
   return NextResponse.json(output);
 }
+
+export const POST = wrapApiHandlerWithSentry(HandlePost, "txt2img");

@@ -6,10 +6,11 @@ import { OpenAI } from "langchain/llms/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { wrapApiHandlerWithSentry } from '@sentry/nextjs';
 
 dotenv.config({ path: `.env.local` });
 
-export async function POST(request: Request) {
+async function HandlePost(request: Request) {
   const { prompt } = await request.json();
   const client = new PineconeClient();
   await client.init({
@@ -39,3 +40,5 @@ export async function POST(request: Request) {
 
   return new StreamingTextResponse(stream);
 }
+
+export const POST = wrapApiHandlerWithSentry(HandlePost, "qa-pinecone");
