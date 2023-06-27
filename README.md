@@ -108,6 +108,25 @@ Now you are ready to test out the app locally! To do this, simply run `npm run d
 - Create a new file `.env.prod` locally and fill in all the production-environment secrets. Remember to update `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` by copying secrets from Clerk's production instance
 -`cat .env.prod | fly secrets import` to upload secrets
 
+### 7. Add Sentry Error, Performance, and Replay Monitoring
+- Sign up for Sentry and create a Next.JS project from [here](https://sentry.io/signup/?project_platform=javascript-nextjs)
+- Once you see the onboarding page scroll down to see the DSN, copy that somewhere (this
+becomes `SENTRY_DSN`).
+- Click
+[this](https://sentry.io/orgredirect/settings/:orgslug/developer-settings/new-internal/)
+to create an internal integration. Give it a name and add the scope for
+`Releases:Admin`. Press Save, find the auth token at the bottom of the page, and
+copy that to secure location (this becomes `SENTRY_AUTH_TOKEN`). Then vist the
+organization settings page and copy that organization slug (`SENTRY_ORG_SLUG`).
+- Add the following lines to your `fly.toml`:
+```
+  NEXT_PUBLIC_SENTRY_DSN="<YOUR_DSN>"
+  SENTRY_AUTH_TOKEN="<YOUR_AUTH_TOKEN>"
+  SENTRY_ORG="<YOUR_ORG>"
+  SENTRY_PROJECT="javascript-nextjs"
+```
+Note these environment variables must be availble during build time so runtime environement variables do not work.
+
 #### Other deployment options
 - [Netlify](https://www.netlify.com/)
 - [Vercel](https://vercel.com/)

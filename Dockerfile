@@ -4,6 +4,11 @@
 ARG NODE_VERSION=18.8.0
 FROM node:${NODE_VERSION}-slim as base
 
+ARG NEXT_PUBLIC_SENTRY_DSN
+ARG SENTRY_AUTH_TOKEN
+ARG SENTRY_ORG
+ARG SENTRY_PROJECT
+
 LABEL fly_launch_runtime="Next.js"
 
 # Next.js app lives here
