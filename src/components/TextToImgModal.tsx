@@ -15,21 +15,35 @@ export default function TextToImgModal({
 }) {
   const [imgSrc, setImgSrc] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMsg,setErrorMessage] = useState("");
   const onSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("/api/txt2img", {
-      method: "POST",
-      body: JSON.stringify({
-        prompt: e.target.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    setImgSrc(data[0]);
-    setLoading(false);
+    setErrorMessage("")
+     fetch("/api/txt2img", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt: e.target.value,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(async response=>{
+        const data = await response.json();
+         if (response.ok){
+          setImgSrc(data[0]);
+          setLoading(false);
+         }
+         else{
+          throw Error(data.error);
+         }
+      }).catch(error=>{
+        setErrorMessage(error.message);
+        setLoading(false);
+      })
+    
+    
+    
   };
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -117,6 +131,11 @@ export default function TextToImgModal({
                     </svg>
                   </p>
                 )}
+                  
+                {errorMsg ?
+                (<p className="text-sm text-white">
+                {errorMsg}        
+                </p>) :null }
               </Dialog.Panel>
             </Transition.Child>
           </div>
