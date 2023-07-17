@@ -6,6 +6,8 @@ import { OpenAI } from "langchain/llms/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { PortkeyConfig } from "../../../scripts/PortkeyConfig";
+
 
 dotenv.config({ path: `.env.local` });
 
@@ -19,7 +21,7 @@ export async function POST(request: Request) {
   const pineconeIndex = client.Index(process.env.PINECONE_INDEX || "");
 
   const vectorStore = await PineconeStore.fromExistingIndex(
-    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
+    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY },PortkeyConfig),
     { pineconeIndex }
   );
 
@@ -29,7 +31,9 @@ export async function POST(request: Request) {
     modelName: "gpt-3.5-turbo-16k",
     openAIApiKey: process.env.OPENAI_API_KEY,
     callbackManager: CallbackManager.fromHandlers(handlers),
-  });
+    },
+    PortkeyConfig
+  );
 
   const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
     k: 1,

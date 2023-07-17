@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { PortkeyConfig } from "../../../scripts/PortkeyConfig";
 
 dotenv.config({ path: `.env.local` });
 
@@ -26,7 +27,7 @@ export async function POST(req: Request) {
   const client = createClient(url, privateKey, { auth });
 
   const vectorStore = await SupabaseVectorStore.fromExistingIndex(
-    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
+    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }, PortkeyConfig),
     {
       client,
       tableName: "documents",
@@ -41,7 +42,9 @@ export async function POST(req: Request) {
     modelName: "gpt-3.5-turbo-16k",
     openAIApiKey: process.env.OPENAI_API_KEY,
     callbackManager: CallbackManager.fromHandlers(handlers),
-  });
+    },
+    PortkeyConfig
+  );
 
   const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
     k: 1,
