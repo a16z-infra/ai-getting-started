@@ -6,7 +6,7 @@ import { OpenAI } from "langchain/llms/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
-import { PortkeyConfig } from "../../../scripts/PortkeyConfig";
+import { PortkeyConfig } from "../../../scripts/PortkeyConfig.mjs";
 
 
 dotenv.config({ path: `.env.local` });

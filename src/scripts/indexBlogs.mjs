@@ -6,7 +6,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import fs from "fs";
 import path from "path";
-import { PortkeyConfig } from "./PortkeyConfig";
+import { PortkeyConfig } from "./PortkeyConfig.mjs";
 
 dotenv.config({ path: `.env.local` });
 

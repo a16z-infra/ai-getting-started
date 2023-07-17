@@ -7,7 +7,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
 import { createClient } from "@supabase/supabase-js";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { PortkeyConfig } from "./PortkeyConfig";
+import { PortkeyConfig } from "./PortkeyConfig.mjs";
 
 import fs from "fs";
 import path from "path";

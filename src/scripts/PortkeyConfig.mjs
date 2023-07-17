@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: `.env.local` });
+
 export const PortkeyConfig = {
   basePath: "https://api.portkey.ai/v1/proxy",
   baseOptions: {
