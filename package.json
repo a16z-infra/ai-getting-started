@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "generate-embeddings-pinecone": "node src/scripts/indexBlogs.mjs",
-    "generate-embeddings-supabase": "node src/scripts/indexBlogPGVector.mjs"
+    "generate-embeddings-supabase": "node src/scripts/indexBlogPGVector.mjs",
+    "generate-embeddings-redis": "node src/scripts/indexBlogRedis.mjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.9-snapshot.56dc3e",
@@ -31,6 +32,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-github-btn": "^1.4.0",
+    "redis": "^4.6.7",
     "replicate": "^0.9.3",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3"
