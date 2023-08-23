@@ -21,7 +21,7 @@ export default function TextToImgModal({
     setLoading(true);
     setErrorMessage("")
     try {
-      const response = await fetch("/api/txt2img", {
+      const response = await fetch("/api/txt2img-prem", {
         method: "POST",
         body: JSON.stringify({
           prompt: e.target.value,
@@ -32,7 +32,13 @@ export default function TextToImgModal({
       });
       const data = await response.json();
       if (response.ok) {
-        setImgSrc(data[0]);
+        if (Array.isArray(data)) {
+          // Replicate returns the image url
+          setImgSrc(data[0]);
+        } else {
+          // Prem response returns a base64 encoded image
+          setImgSrc(`data:image/png;base64,${data.data[0]['b64_json']}`);
+        }
         setLoading(false);
       }
       else {
@@ -97,12 +103,9 @@ export default function TextToImgModal({
                   </div>
                 </div>
                 {imgSrc && !loading && (
-                  <Image
-                    width={0}
-                    height={0}
-                    sizes="100vw"
+                  <img
                     src={imgSrc}
-                    alt="img"
+                    alt="Description of Image"
                     className="w-full h-full object-contain"
                   />
                 )}
