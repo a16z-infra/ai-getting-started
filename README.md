@@ -92,7 +92,7 @@ In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-pg-vector`. Then run 
 npm run generate-embeddings-supabase
 ```
 
-## Use Prem Self-Hosted as Backend
+## Use Prem as AI Models Backend
 
 ### Install and Run Prem
 
@@ -100,11 +100,7 @@ Follow the instructions [here](https://premai.io/docs/getting-started/installati
 
 ### Start Prem Services
 
-- Redis
-- Vicuna 7B Q4
-- Sentence Transformers
-
-You can check [here](https://www.youtube.com/watch?v=XixH46Ysl5A&t=604s) for more details on how to start these services.
+You can check [here](https://www.youtube.com/watch?v=XixH46Ysl5A&t=604s) for more details on how to start Prem AI Services.
 
 #### Generate embeddings and store them in Redis vectorstore
 In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-redis`. Then run the following command to generate embeddings and store them in Redis:
@@ -112,6 +108,8 @@ In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-redis`. Then run the 
 ```bash
 npm run generate-embeddings-redis
 ```
+#### Use Self Hosted Stable Diffusion Model
+In `TextToImgModal.tsx`, replace `/api/text-to-img` with `/api/text-to-img-prem`. 
 
 ### 5. Run app locally
 
