@@ -6,7 +6,7 @@ dotenv.config({ path: `.env.local` });
 
 const openai = new OpenAI({
     apiKey: "random-string",
-    baseURL: process.env.STABLE_DIFFUSION_BASE_URL || "http://184.105.5.51:9111/v1"
+    baseURL: process.env.STABLE_DIFFUSION_BASE_URL || "http://localhost:9111/v1"
 });
 
 export async function POST(request: Request) {

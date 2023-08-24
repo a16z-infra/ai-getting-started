@@ -20,13 +20,13 @@ const lanchainDocs = fileNames.map((fileName) => {
 });
 
 const client = createClient({
-  url: process.env.REDIS_URL ?? "redis://localhost:6379",
+  url: process.env.REDIS_BASE_URL ?? "redis://localhost:6379",
 });
 await client.connect();
 
 await RedisVectorStore.fromDocuments(
   lanchainDocs,
-  new OpenAIEmbeddings({ openAIApiKey: "random-string", basePath: "http://localhost:8444"}),
+  new OpenAIEmbeddings({ openAIApiKey: "random-string"}, {basePath: process.env.EMBEDDINGS_MODEL_BASE_URL ?? "http://localhost:8444/v1"}),
   {
     redisClient: client,
     indexName: "docs",
