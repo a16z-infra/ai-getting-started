@@ -6,6 +6,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import fs from "fs";
 import path from "path";
+import { PortkeyConfig } from "./PortkeyConfig.mjs";
 
 dotenv.config({ path: `.env.local` });
 
@@ -52,7 +53,7 @@ const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 
 await PineconeStore.fromDocuments(
   lanchainDocs,
-  new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
+  new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY },PortkeyConfig),
   {
     pineconeIndex,
   }

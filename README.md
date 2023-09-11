@@ -15,6 +15,7 @@
 - App logic: [Next.js](https://nextjs.org/)
 - VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector)
 - LLM Orchestration: [Langchain.js](https://js.langchain.com/docs/) 
+- Logs, Caching, Monitoring: [Portkey](https://docs.portkey.ai/) 
 - Image Model: [Replicate](https://replicate.com/)
 - Text Model: [OpenAI](https://platform.openai.com/docs/models)
 - Text streaming: [ai sdk](https://github.com/vercel-labs/ai)
@@ -76,6 +77,12 @@ e. **Supabase API key**
 - `SUPABASE_PRIVATE_KEY` is the key starts with `ey` under Project API Keys
 - Now, you should enable pgvector on Supabase and create a schema. You can do this easily by clicking on "SQL editor" on the left hand side on supabase UI and then clicking on "+New Query". Copy paste [this code snippet](https://github.com/a16z-infra/ai-getting-started/blob/main/pgvector.sql) in the SQL editor and click "Run".
 
+f. **Portkey API key**
+- Create a Portkey account [here](https://portkey.ai/).
+- On the [dashboard](https://app.portkey.ai/), under the user settings on the top left, click on "Copy API key".
+- Paste this to the 'PORTKEY_API_KEY' variable.
+- Add Metadata, Caching, Retries and other headers [here](/src/scripts/PortkeyConfig.ts). Refer to [Portkey Docs](https://docs.portkey.ai/) for more.
+
 ### 4. Generate embeddings 
 
 There are a few markdown files under `/blogs` directory as examples so you can do Q&A on them. To generate embeddings and store them in the vector database for future queries, you can run the following command: 
@@ -112,6 +119,9 @@ Now you are ready to test out the app locally! To do this, simply run `npm run d
 - [Netlify](https://www.netlify.com/)
 - [Vercel](https://vercel.com/)
 
+### 7. Log each request
+- Now you should start seeing logs (cost, tokens, latency) for every request on [dashboard](https://app.portkey.ai/)
+- Configure automatic retries, semantic caching, etc [here](/src/scripts/PortkeyConfig.ts) by referring to [Portkey Docs](https://docs.portkey.ai/).
 
 ## How to contribute to this repo
 
