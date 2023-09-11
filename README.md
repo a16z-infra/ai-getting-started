@@ -62,12 +62,14 @@ c. **Replicate API key**
 
 Visit https://replicate.com/account/api-tokens to get your Replicate API key
 
+d. **Pinecone API key**
+
 > **_NOTE:_**  By default, this template uses Pinecone as vector store, but you can turn on Supabase pgvector easily. This means you only need to fill out either Pinecone API key _or_ Supabase API key. 
 
-d. **Pinecone API key**
 - Create a Pinecone index by visiting https://app.pinecone.io/ and click on "Create Index"
 - Give it an index name (this will be the environment variable `PINECONE_INDEX`)
-- Fill in Dimension as `1536`
+- Fill in Dimensions as `1536`. This corresponds to the output dimensions of [OpenAI's text embedding model](https://platform.openai.com/docs/guides/embeddings/second-generation-models).
+- Leave Metric set to the default value `cosine`
 - Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy "Environment" value to `PINECONE_ENVIRONMENT` variable, and "Value" to `PINECONE_API_KEY`
 
 e. **Supabase API key**
@@ -97,6 +99,10 @@ npm run generate-embeddings-supabase
 
 Now you are ready to test out the app locally! To do this, simply run `npm run dev` under the project root.
 
+The app is now running at [localhost:3000](http://localhost:3000). Once you sign in, you should see a landing page:
+
+<img alt="app running on localhost" src="https://github.com/a16z-infra/ai-getting-started/assets/2289/b89ac66b-64b8-434f-97cc-9243b9cf2c18">
+
 ### 6. Deploy the app
 
 #### Deploy to fly.io
@@ -120,7 +126,7 @@ You can fork this repo, make changes, and create a PR. Add **@ykhli or @timqian*
 
 If you are new to contributing on github, here is a step-by-step guide: 
 
-1. Clcik on `Fork` on the top right of this page
+1. Click on `Fork` on the top right of this page
 2. Work on your change and push it to your forked repo. Now when you navigate to the forked repo's UI, you should see something like the following:
 <img width="904" alt="pr-preview" src="https://github.com/a16z-infra/ai-getting-started/assets/3489963/631e5f45-39ec-4b54-b9d1-b963e279dcc6">
 
