@@ -31,10 +31,13 @@ export async function POST(request: Request) {
     callbackManager: CallbackManager.fromHandlers(handlers),
   });
 
+  model.verbose = true;
+
   const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
     k: 1,
     returnSourceDocuments: true,
   });
+
   chain.call({ query: prompt }).catch(console.error);
 
   return new StreamingTextResponse(stream);
