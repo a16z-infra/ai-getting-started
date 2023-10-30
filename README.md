@@ -1,4 +1,4 @@
-# Local AI Stack
+# Local AI Stack (WIP)
 
 This project was built on [AI Starter Kit](https://github.com/a16z-infra/ai-getting-started). The idea is to make it possible for anyone to run a simple AI app 100% locally without having to use their credit card.
 
