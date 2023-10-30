@@ -11,7 +11,6 @@
     "generate-embeddings-supabase": "node src/scripts/indexBlogPGVector.mjs"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.21.9-snapshot.56dc3e",
     "@headlessui/react": "^1.7.15",
     "@pinecone-database/pinecone": "^0.1.6",
     "@supabase/supabase-js": "^2.25.0",
@@ -25,13 +24,12 @@
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "hnswlib-node": "^1.4.2",
-    "langchain": "^0.0.100",
+    "langchain": "^0.0.144",
     "next": "13.4.4",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-github-btn": "^1.4.0",
-    "replicate": "^0.9.3",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3"
   },
