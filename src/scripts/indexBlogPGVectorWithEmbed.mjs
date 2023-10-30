@@ -30,9 +30,6 @@ let langchainDocs = await Promise.all(
     });
   })
 );
-//TODO
-langchainDocs = [[langchainDocs[0][0]]];
-console.log("langchaindocs", langchainDocs);
 
 const auth = {
   detectSessionInUrl: false,
