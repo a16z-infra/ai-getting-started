@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { vectorSearch } from "@/util";
 
 dotenv.config({ path: `.env.local` });
 
@@ -28,15 +29,6 @@ export async function POST(req: Request) {
   };
   const client = createClient(url, privateKey, { auth });
 
-  const vectorStore = await SupabaseVectorStore.fromExistingIndex(
-    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
-    {
-      client,
-      tableName: "documents",
-      queryName: "match_documents",
-    }
-  );
-
   let model;
 
   if (ollama_endpoint) {
@@ -46,16 +38,27 @@ export async function POST(req: Request) {
       model: ollama_model ? ollama_model : "ollama",
     });
     model.verbose = true;
+    const data = await vectorSearch(client, prompt);
+    const contextData = data.map((d: any) => d.content);
 
-    const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
-      k: 1,
-      returnSourceDocuments: false,
-    });
+    const modifiedPrompt = `Please answer the users question based on the following context. If you can't answer the question based on the context, say 'I don't know'.
+    
+    Question: ${prompt}
+    
+    Context: ${JSON.stringify(contextData)}`;
+    const result = await model.call(modifiedPrompt);
 
-    const result = await chain.call({ query: prompt }).catch(console.error);
-
-    return new Response(result!.text);
+    return new Response(result);
   } else {
+    const vectorStore = await SupabaseVectorStore.fromExistingIndex(
+      new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
+      {
+        client,
+        tableName: "documents",
+        queryName: "match_documents",
+      }
+    );
+
     let { stream, handlers } = LangChainStream();
     model = new OpenAI({
       streaming: true,
