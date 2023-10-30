@@ -1,4 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
+import { pipeline } from "@xenova/transformers";
 
 const embedding_endpoint = process.env.SUPABASE_EMBEDDING_ENDPOINT!;
 
@@ -18,7 +19,7 @@ export async function vectorSearch(
   return result.data || "";
 }
 
-export async function generateEmbedding(content: string) {
+export async function generateEmbeddingSupabase(content: string) {
   const headers = new Headers();
   headers.append("Authorization", "Bearer " + process.env.SUPABASE_PRIVATE_KEY);
   headers.append("Content-Type", "application/json");
@@ -32,4 +33,21 @@ export async function generateEmbedding(content: string) {
   });
   const json = await response.json();
   return json.embedding;
+}
+
+export async function generateEmbedding(content: string) {
+  const generateEmbedding = await pipeline(
+    "feature-extraction",
+    "Xenova/all-MiniLM-L6-v2"
+  );
+
+  // Generate a vector using Transformers.js
+  const output = await generateEmbedding(content, {
+    pooling: "mean",
+    normalize: true,
+  });
+
+  // Extract the embedding output
+  const embedding = Array.from(output.data);
+  return embedding;
 }

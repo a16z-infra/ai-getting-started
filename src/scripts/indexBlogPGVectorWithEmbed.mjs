@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { Document } from "langchain/document";
 import { createClient } from "@supabase/supabase-js";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { pipeline } from "@xenova/transformers";
 
 import fs from "fs";
 import path from "path";
@@ -63,17 +64,18 @@ const { error } = await client.from("documents").insert(insertData);
 console.debug(error);
 
 export async function generateEmbedding(content) {
-  const headers = new Headers();
-  headers.append("Authorization", "Bearer " + process.env.SUPABASE_PRIVATE_KEY);
-  headers.append("Content-Type", "application/json");
-  const body = JSON.stringify({
-    input: content,
+  const generateEmbedding = await pipeline(
+    "feature-extraction",
+    "Xenova/all-MiniLM-L6-v2"
+  );
+
+  // Generate a vector using Transformers.js
+  const output = await generateEmbedding(content, {
+    pooling: "mean",
+    normalize: true,
   });
-  const response = await fetch(process.env.SUPABASE_EMBEDDING_ENDPOINT, {
-    method: "POST",
-    headers,
-    body,
-  });
-  const json = await response.json();
-  return json.embedding;
+
+  // Extract the embedding output
+  const embedding = Array.from(output.data);
+  return embedding;
 }
