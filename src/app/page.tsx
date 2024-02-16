@@ -1,20 +1,30 @@
 import Navbar from "@/components/Navbar";
 import Examples from "@/components/Examples";
+import { UserButton } from "@clerk/nextjs";
 
+/**
+ * Home page component.
+ * Renders the home page layout with navbar, header, examples section, and background SVG.
+ */
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <Navbar />
       <div className="w-full min-h-screen relative isolate overflow-hidden bg-gray-900 px-6 py-24 shadow-2xl sm:px-24 xl:py-32">
         <h1 className="mt-16 mx-auto max-w-2xl text-center text-5xl font-bold tracking-tight text-white sm:text-6xl">
-          AI Getting Started
+          Sage Getting Started
         </h1>
 
+        <UserButton afterSignOutUrl="/" />
+
         <p className="mx-auto mt-4 max-w-xl text-center text-xl leading-8 text-slate-400">
-          Help you set up an AI project with ease. Here are two example use cases:
+          Help you set up an Sage project with ease. Here are two example use
+          cases:
         </p>
 
         <Examples />
+
+        <button>New Button</button>
 
         <svg
           viewBox="0 0 1024 1024"
@@ -46,3 +56,4 @@ export default function Home() {
     </main>
   );
 }
+
