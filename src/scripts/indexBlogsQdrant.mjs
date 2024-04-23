@@ -1,9 +1,9 @@
-// Major ref: https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/qdrant
+// Major ref: https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/pinecone
+import { PineconeClient } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import {QdrantClient} from '@qdrant/js-client-rest';
-import { QdrantVectorStore } from "langchain/vectorstores/qdrant";
+import { PineconeStore } from "langchain/vectorstores/pinecone";
 import fs from "fs";
 import path from "path";
 
@@ -34,7 +34,7 @@ fileNames.forEach((fileName) => {
   const fileContent = fs.readFileSync(filePath, "utf8");
 
   const chunks = chunkString(fileContent, MAX_TOKENS);
-
+  
   chunks.forEach((chunk, index) => {
     lanchainDocs.push(new Document({
       metadata: { fileName, chunkIndex: index },
@@ -43,14 +43,17 @@ fileNames.forEach((fileName) => {
   });
 });
 
+const client = new PineconeClient();
+await client.init({
+  apiKey: process.env.PINECONE_API_KEY,
+  environment: process.env.PINECONE_ENVIRONMENT,
+});
+const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 
-const qdrantClient = new QdrantClient({ url: process.env.QDRANT_URL, apiKey: process.env?.QDRANT_API_KEY });
-
-await QdrantVectorStore.fromDocuments(
-  langchainDocs,
+await PineconeStore.fromDocuments(
+  lanchainDocs,
   new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
   {
-    client: qdrantClient,
-    collectionName: process.env.QDRANT_COLLECTION_NAME,
+    pineconeIndex,
   }
 );
