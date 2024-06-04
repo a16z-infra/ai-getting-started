@@ -19,6 +19,7 @@
 - Text Model: [OpenAI](https://platform.openai.com/docs/models)
 - Text streaming: [ai sdk](https://github.com/vercel-labs/ai)
 - Deployment: [Fly](https://fly.io/)
+- Security: [Arcjet](https://arcjet.com/)
 
 ## Overview
 - 🚀 [Quickstart](#quickstart)
@@ -75,6 +76,10 @@ e. **Supabase API key**
 - `SUPABASE_URL` is the URL value under "Project URL"
 - `SUPABASE_PRIVATE_KEY` is the key starts with `ey` under Project API Keys
 - Now, you should enable pgvector on Supabase and create a schema. You can do this easily by clicking on "SQL editor" on the left hand side on supabase UI and then clicking on "+New Query". Copy paste [this code snippet](https://github.com/a16z-infra/ai-getting-started/blob/main/pgvector.sql) in the SQL editor and click "Run".
+
+f. **Arcjet key**
+
+Visit https://app.arcjet.com to sign up for free and get your Arcjet key.
 
 ### 4. Generate embeddings 
 
