@@ -13,10 +13,10 @@
 
 - Auth: [Clerk](https://clerk.com/)
 - App logic: [Next.js](https://nextjs.org/)
-- VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector)
+- VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector) / [Redis](https://redis.io/)
 - LLM Orchestration: [Langchain.js](https://js.langchain.com/docs/) 
 - Image Model: [Replicate](https://replicate.com/)
-- Text Model: [OpenAI](https://platform.openai.com/docs/models)
+- Text Model: [OpenAI](https://platform.openai.com/docs/models) / [Prem](https://premai.io/)
 - Text streaming: [ai sdk](https://github.com/vercel-labs/ai)
 - Deployment: [Fly](https://fly.io/)
 - Security: [Arcjet](https://arcjet.com/)
@@ -97,6 +97,24 @@ In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-pg-vector`. Then run 
 npm run generate-embeddings-supabase
 ```
 
+## Use Prem as AI Models Backend
+
+### Install and Run Prem
+
+Follow the instructions [here](https://premai.io/docs/getting-started/installation) to install and run Prem in your local environment or infrastructure.
+
+### Start Prem Services
+
+You can check [here](https://www.youtube.com/watch?v=XixH46Ysl5A&t=604s) for more details on how to start Prem AI Services.
+
+#### Generate embeddings and store them in Redis vectorstore
+In `QAModel.tsx`, replace `/api/qa-pinecone` with `/api/qa-redis`. Then run the following command to generate embeddings and store them in Redis:
+
+```bash
+npm run generate-embeddings-redis
+```
+#### Use Self Hosted Stable Diffusion Model
+In `TextToImgModal.tsx`, replace `/api/text-to-img` with `/api/text-to-img-prem`. 
 
 ### 5. Run app locally
 
