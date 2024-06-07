@@ -69,7 +69,7 @@ d. **Pinecone API key**
 - Create a Pinecone index by visiting https://app.pinecone.io/ and click on "Create Index"
 - Give it an index name (this will be the environment variable `PINECONE_INDEX`)
 - Fill in Dimension as `1536`
-- Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy "Environment" value to `PINECONE_ENVIRONMENT` variable, and "Value" to `PINECONE_API_KEY`
+- Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy it to `PINECONE_API_KEY`
 
 e. **Supabase API key**
 - Create a Supabase instance [here](https://supabase.com/dashboard/projects); then go to Project Settings -> API 

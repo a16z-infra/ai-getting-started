@@ -1,12 +1,15 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-// This requires user to sign in to see any page or call any API route
-export default authMiddleware();
+const isProtectedRoute = createRouteMatcher(["/"]);
 
-// Use the following code instead to expose /api or / as public routes 
-// export default authMiddleware({
-//   publicRoutes: ["/", "/api(.*)"],
-// });
+export default clerkMiddleware((auth, request) => {
+  if (isProtectedRoute(request)) {
+    auth().protect();
+  }
+
+  return NextResponse.next();
+});
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],

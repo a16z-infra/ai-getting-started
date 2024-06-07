@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import arcjet, { shield, fixedWindow, detectBot } from "@arcjet/next";
 import { NextResponse } from "next/server";
 
