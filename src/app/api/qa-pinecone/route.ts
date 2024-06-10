@@ -1,4 +1,4 @@
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
@@ -6,7 +6,7 @@ import { OpenAI } from "langchain/llms/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import arcjet, { shield, fixedWindow, detectBot } from "@arcjet/next";
 import { NextResponse } from "next/server";
 
@@ -80,10 +80,8 @@ export async function POST(request: Request) {
   }
 
   const { prompt } = await request.json();
-  const client = new PineconeClient();
-  await client.init({
+  const client = new Pinecone({
     apiKey: process.env.PINECONE_API_KEY || "",
-    environment: process.env.PINECONE_ENVIRONMENT || "",
   });
   const pineconeIndex = client.Index(process.env.PINECONE_INDEX || "");
 

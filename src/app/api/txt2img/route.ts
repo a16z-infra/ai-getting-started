@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import Replicate from "replicate";
 import { NextResponse } from "next/server";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import arcjet, { shield, fixedWindow, detectBot } from "@arcjet/next";
 
 dotenv.config({ path: `.env.local` });
