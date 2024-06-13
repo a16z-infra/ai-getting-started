@@ -19,6 +19,7 @@
 - Text Model: [OpenAI](https://platform.openai.com/docs/models)
 - Text streaming: [ai sdk](https://github.com/vercel-labs/ai)
 - Deployment: [Fly](https://fly.io/)
+- Security: [Arcjet](https://arcjet.com/)
 
 ## Overview
 - 🚀 [Quickstart](#quickstart)
@@ -68,13 +69,17 @@ d. **Pinecone API key**
 - Create a Pinecone index by visiting https://app.pinecone.io/ and click on "Create Index"
 - Give it an index name (this will be the environment variable `PINECONE_INDEX`)
 - Fill in Dimension as `1536`
-- Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy "Environment" value to `PINECONE_ENVIRONMENT` variable, and "Value" to `PINECONE_API_KEY`
+- Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy it to `PINECONE_API_KEY`
 
 e. **Supabase API key**
 - Create a Supabase instance [here](https://supabase.com/dashboard/projects); then go to Project Settings -> API 
 - `SUPABASE_URL` is the URL value under "Project URL"
 - `SUPABASE_PRIVATE_KEY` is the key starts with `ey` under Project API Keys
 - Now, you should enable pgvector on Supabase and create a schema. You can do this easily by clicking on "SQL editor" on the left hand side on supabase UI and then clicking on "+New Query". Copy paste [this code snippet](https://github.com/a16z-infra/ai-getting-started/blob/main/pgvector.sql) in the SQL editor and click "Run".
+
+f. **Arcjet key**
+
+Visit https://app.arcjet.com to sign up for free and get your Arcjet key.
 
 ### 4. Generate embeddings 
 

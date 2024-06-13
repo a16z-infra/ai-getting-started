@@ -1,6 +1,5 @@
 // Major ref: https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/pinecone
-
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
@@ -33,10 +32,12 @@ const lanchainDocs = [];
 fileNames.forEach((fileName) => {
   const filePath = path.join("blogs", fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
+  console.log("Processing", fileName);
 
   const chunks = chunkString(fileContent, MAX_TOKENS);
   
   chunks.forEach((chunk, index) => {
+    console.log("Processing chunk", index);
     lanchainDocs.push(new Document({
       metadata: { fileName, chunkIndex: index },
       pageContent: chunk,
@@ -44,10 +45,8 @@ fileNames.forEach((fileName) => {
   });
 });
 
-const client = new PineconeClient();
-await client.init({
+const client = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY,
-  environment: process.env.PINECONE_ENVIRONMENT,
 });
 const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 
