@@ -30,7 +30,7 @@ The simplest way to try out this stack is to test it out locally and traverse th
 
 ### 1. Fork and Clone repo
 
-Fork the repo to your Github account, then run the following command to clone the repo: 
+Fork the repo to your GitHub account, then run the following command to clone the repo: 
 ```
 git clone git@github.com:[YOUR_GITHUB_ACCOUNT_NAME]/ai-getting-started.git
 ```
@@ -123,7 +123,7 @@ Now you are ready to test out the app locally! To do this, simply run `npm run d
 ### Code contribution workflow
 You can fork this repo, make changes, and create a PR. Add **@ykhli or @timqian** as reviewers. 
 
-If you are new to contributing on github, here is a step-by-step guide: 
+If you are new to contributing on GitHub, here is a step-by-step guide: 
 
 1. Clcik on `Fork` on the top right of this page
 2. Work on your change and push it to your forked repo. Now when you navigate to the forked repo's UI, you should see something like the following:
