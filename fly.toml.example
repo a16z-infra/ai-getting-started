@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "ai-getting-started"
+app = "ai-getting-started-weathered-surf-4311"
 primary_region = "sin"
 
 [http_service]

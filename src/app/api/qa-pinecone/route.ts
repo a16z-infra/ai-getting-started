@@ -93,7 +93,7 @@ export async function POST(request: Request) {
   const { stream, handlers } = LangChainStream();
   const model = new OpenAI({
     streaming: true,
-    modelName: "gpt-3.5-turbo-16k",
+    modelName: "gpt-4.1",
     openAIApiKey: process.env.OPENAI_API_KEY,
     callbackManager: CallbackManager.fromHandlers(handlers),
   });
